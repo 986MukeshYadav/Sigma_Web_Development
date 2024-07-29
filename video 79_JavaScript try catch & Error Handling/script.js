@@ -12,6 +12,10 @@ console.log("Sum is : " + sum *x);
 }
 catch(err){
     console.log("Error aa gaya bhai");
+    // console.log(err.message);
+    // console.log(err.name);
+    // console.log(err.stack);
+    
 }
 finally{
     console.log("Files are begin closed and db connection is begin closed");
