@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container red bg-green">
+      <div
+        class="box"
+        style="display: flex"
+        data-createdby="Mukesh"
+        data-conceptby="Kumar"
+      >
+        Hey I am Mukesh
+      </div>
+      <script>
+        // let div=document.createElement("div")
+        // div.innerHTML = "i have been inserted by Mukesh";
+        // div.setAttribute("class","created");
+        // // document.querySelector(".container").append(div);
+        // // document.querySelector(".container").before(div);
+        // document.querySelector(".container").after(div);
+
+        let cont = document.querySelector(".container");
+        cont.insertAdjacentHTML(
+          "afterend",
+          "<b> I am under the water  please help me here too much raining ..... iuuuooooo</b>"
+        );
+      </script>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+<!-- document.querySelector(".box").tagName
+'DIV'
+document.querySelector(".box").nodeName
+'DIV'
+document.querySelector(".box").innerHTML
+'Hey I am Mukesh'
+document.querySelector(".box").outerHTML
+'<div class="box">Hey I am Mukesh</div>'
+document.querySelector(".box").textContent
+'Hey I am Mukesh'
+document.querySelector(".box").hidden=true;
+true
+document.querySelector(".box").hidden=true;
+true
+document.querySelector(".box").hidden=false
+false
+document.querySelector(".box").hasAttribute("style");
+true
+document.querySelector(".box").getAttribute("style");
+'display: flex;'
+document.querySelector(".box").setAttribute("style","display:inline");
+undefined
+document.querySelector(".box").attributes
+NamedNodeMap {0: class, 1: style, class: class, style: style, length: 2}
+document.querySelector(".box").removeAttribute("style");
+undefined
+document.designMode = "on";
+undefined
+document.querySelector(".box").dataset
+DOMStringMap {createdby: 'Mukesh', conceptby: 'Kumar'}
+document.querySelector(".container").classList.toggle("red")
+document.querySelector(".container").classList.add("mukesh")
+undefined
+document.querySelector(".container").classList
+DOMTokenList(4) ['container', 'bg-green', 'red', 'mukesh', value: 'container bg-green red mukesh'] -->
