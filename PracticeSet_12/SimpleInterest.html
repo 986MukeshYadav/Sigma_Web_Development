@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Interest Calculator</title>
+</head>
+<body>
+    <h1>Simple Interest Calculator</h1>
+    <form id="interestForm">
+        <label for="principal">Principal Amount:</label>
+        <input type="number" id="principal" name="principal" required><br><br>
+        
+        <label for="rate">Rate of Interest (% per annum):</label>
+        <input type="number" id="rate" name="rate" required><br><br>
+        
+        <label for="time">Time Period (years):</label>
+        <input type="number" id="time" name="time" required><br><br>
+        
+        <input type="submit" value="Calculate Simple Interest">
+    </form>
+    <h2 id="result"></h2>
+
+    <script>
+        document.getElementById('interestForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const principal = parseFloat(document.getElementById('principal').value);
+            const rate = parseFloat(document.getElementById('rate').value);
+            const time = parseFloat(document.getElementById('time').value);
+
+            const simpleInterest = (principal * rate * time) / 100;
+
+            document.getElementById('result').innerText = `Simple Interest: ${simpleInterest.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
