@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Machine Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Coffee Machine</h1>
+  <form id="coffeeForm">
+    <label for="coffeeType">Select your coffee:</label>
+    <select id="coffeeType" name="coffeeType">
+      <option value="Latte">Latte</option>
+      <option value="Espresso">Espresso</option>
+      <option value="Cappuccino">Cappuccino</option>
+      <option value="Americano">Americano</option>
+    </select>
+    <button type="submit">Brew Coffee</button>
+  </form>
+  <p id="message"></p>
+
+  <script>
+    // Function to simulate a random delay between 2 and 5 seconds
+    function randomDelay() {
+      const delay = Math.floor(Math.random() * 3000) + 2000; // 2000 to 5000 milliseconds
+      return new Promise(resolve => setTimeout(resolve, delay));
+    }
+
+    // Asynchronous function to brew coffee
+    async function brewCoffee(coffeeType) {
+      await randomDelay(); // Wait for the random delay
+      return `Your ${coffeeType} is ready!`; // Return the ready message
+    }
+
+    // Handle form submission
+    document.getElementById('coffeeForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const coffeeType = document.getElementById('coffeeType').value; // Get the selected coffee type
+      const messageElement = document.getElementById('message'); // Get the message element
+
+      brewCoffee(coffeeType).then(message => {
+        messageElement.textContent = message; // Display the coffee ready message
+      });
+    });
+  </script>
+</body>
+</html>

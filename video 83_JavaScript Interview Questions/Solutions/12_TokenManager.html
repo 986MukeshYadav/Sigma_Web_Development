@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Token Manager</h1>
+
+    <label for="tokenInput">Authentication Token:</label>
+    <input type="text" id="tokenInput" placeholder="Enter token">
+    <br><br>
+    <label for="expirationInput">Expiration Time (minutes):</label>
+    <input type="number" id="expirationInput" placeholder="Enter expiration time">
+    <br><br>
+    <button id="setTokenButton">Set Token</button>
+    <button id="checkTokenButton">Check Token</button>
+
+    <p id="result"></p>
+
+    <script>
+        // Function to set the authentication token in localStorage with an expiration time
+        function setAuthToken(token, expirationMinutes) {
+            const expirationTime = new Date().getTime() + (expirationMinutes * 60 * 1000);
+            const authData = {
+                token: token,
+                expiration: expirationTime
+            };
+            localStorage.setItem('authToken', JSON.stringify(authData));
+        }
+
+        // Function to get and validate the authentication token from localStorage
+        function getAuthToken() {
+            const authData = localStorage.getItem('authToken');
+            if (authData) {
+                const { token, expiration } = JSON.parse(authData);
+                if (new Date().getTime() < expiration) {
+                    return token; // Token is valid
+                } else {
+                    localStorage.removeItem('authToken'); // Token expired, remove it
+                    return null; // No valid token
+                }
+            } else {
+                return null; // No token stored
+            }
+        }
+
+        // Handle setting the token
+        document.getElementById('setTokenButton').addEventListener('click', function() {
+            const token = document.getElementById('tokenInput').value.trim();
+            const expirationMinutes = parseInt(document.getElementById('expirationInput').value.trim(), 10);
+
+            if (token && !isNaN(expirationMinutes)) {
+                setAuthToken(token, expirationMinutes);
+                document.getElementById('result').textContent = 'Token set successfully!';
+            } else {
+                document.getElementById('result').textContent = 'Please enter a valid token and expiration time.';
+            }
+        });
+
+        // Handle checking the token
+        document.getElementById('checkTokenButton').addEventListener('click', function() {
+            const validToken = getAuthToken();
+            if (validToken) {
+                document.getElementById('result').textContent = `Valid token: ${validToken}`;
+            } else {
+                document.getElementById('result').textContent = 'No valid token found or token has expired.';
+            }
+        });
+    </script>
+</body>
+</html>
