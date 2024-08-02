@@ -1,0 +1,44 @@
+<!-- 14) The Window Scroller: You are developing a single-page application with a smooth scrolling effect. Implement a function named smoothScrollToTop that smoothly scrolls the window to the top when called. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Scroll to Top</title>
+    <style>
+        body {
+            height: 2000px; /* Just to have enough content to scroll */
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        #scrollButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function smoothScrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Scroll Down and Click the Button to Scroll to Top</h1>
+    <p>Content goes here...</p>
+    <!-- Add enough content to make the page scrollable -->
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam feugiat libero ut justo euismod, id hendrerit nulla consequat. Sed gravida nulla in ligula consequat blandit. Vivamus tempus elit a erat facilisis, at auctor mi pellentesque. Curabitur dignissim felis ut sem egestas, vel laoreet dui volutpat. Phasellus sit amet elit nec odio tristique fermentum. Nullam nec dolor at orci ultricies pharetra. Suspendisse ultrices lorem eu est feugiat convallis.</p>
+    <!-- Repeat above paragraph as needed -->
+    <button id="scrollButton" onclick="smoothScrollToTop()">Scroll to Top</button>
+</body>
+</html>

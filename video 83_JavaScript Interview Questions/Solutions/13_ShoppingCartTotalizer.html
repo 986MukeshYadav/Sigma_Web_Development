@@ -1,0 +1,55 @@
+<!-- 13) The Shopping Cart Totalizer: You are working on an e-commerce website, and you need to calculate the total cost of items in the shopping cart. Implement a function named calculateTotal that takes an array of products with prices and quantities and returns the total cost. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart Totalizer</title>
+    <script>
+        function calculateTotal(products) {
+            return products.reduce((total, product) => {
+                return total + (product.price * product.quantity);
+            }, 0);
+        }
+
+        function getCartItems() {
+            const cartItems = [];
+            const rows = document.querySelectorAll('.cart-item');
+            rows.forEach(row => {
+                const price = parseFloat(row.querySelector('.price').value);
+                const quantity = parseInt(row.querySelector('.quantity').value);
+                if (!isNaN(price) && !isNaN(quantity)) {
+                    cartItems.push({ price, quantity });
+                }
+            });
+            return cartItems;
+        }
+
+        function displayTotal() {
+            const cartItems = getCartItems();
+            const total = calculateTotal(cartItems);
+            document.getElementById('total-cost').textContent = `Total Cost: $${total.toFixed(2)}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Shopping Cart Totalizer</h1>
+    <div id="cart">
+        <div class="cart-item">
+            <label>Price: <input type="number" class="price" step="0.01"></label>
+            <label>Quantity: <input type="number" class="quantity"></label>
+        </div>
+        <div class="cart-item">
+            <label>Price: <input type="number" class="price" step="0.01"></label>
+            <label>Quantity: <input type="number" class="quantity"></label>
+        </div>
+        <div class="cart-item">
+            <label>Price: <input type="number" class="price" step="0.01"></label>
+            <label>Quantity: <input type="number" class="quantity"></label>
+        </div>
+    </div>
+    <button onclick="displayTotal()">Calculate Total</button>
+    <p id="total-cost">Total Cost: $0.00</p>
+</body>
+</html>
